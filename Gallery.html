@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shatakshi Saini Gallery</title>
+
+<style>
+:root{
+  --accent:#6c5ce7;
+  --bg:#0f1724;
+  --card:#121a2f;
+  --text:#ecf0f1;
+}
+
+*{box-sizing:border-box;margin:0;padding:0;}
+
+body{
+  font-family: Inter, system-ui, sans-serif;
+  background: linear-gradient(135deg,#050a1a,#0b1230);
+  color: var(--text);
+}
+
+header{
+  text-align:center;
+  padding:20px;
+}
+header h1{
+  font-size:32px;
+  margin-bottom:6px;
+}
+header p{
+  color:#9aaecb;
+}
+
+/* Gallery Grid */
+.gallery{
+  column-count:4;
+  column-gap:16px;
+  padding:20px;
+}
+@media(max-width:1200px){ .gallery{column-count:3;} }
+@media(max-width:900px){ .gallery{column-count:2;} }
+@media(max-width:600px){ .gallery{column-count:1;} }
+
+.photo{
+  break-inside: avoid;
+  margin-bottom:16px;
+  position: relative;
+  cursor: pointer;
+  border-radius:14px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.photo img{
+  width:100%;
+  display:block;
+  transition: transform 0.4s ease;
+}
+.photo:hover img{
+  transform: scale(1.08);
+}
+.photo:hover{
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+}
+
+/* Overlay text on hover */
+.photo span{
+  position:absolute;
+  bottom:0;
+  left:0;
+  width:100%;
+  padding:10px;
+  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+  color:white;
+  font-weight:600;
+  opacity:0;
+  transition: opacity 0.3s ease;
+}
+.photo:hover span{
+  opacity:1;
+}
+
+/* Lightbox */
+.lightbox{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.85);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:999;
+}
+.lightbox.active{display:flex;}
+.lightbox-content{
+  position:relative;
+  max-width:90%;
+  max-height:90%;
+  animation:zoomIn 0.4s ease;
+}
+@keyframes zoomIn{
+  from{transform:scale(0.7);opacity:0;}
+  to{transform:scale(1);opacity:1;}
+}
+.lightbox-content img{
+  width:100%;
+  max-height:90vh;
+  border-radius:14px;
+  display:block;
+}
+
+/* Close Button */
+.close{
+  position:absolute;
+  top:10px;
+  right:20px;
+  font-size:28px;
+  font-weight:bold;
+  color:white;
+  cursor:pointer;
+}
+
+/* Backup Button */
+.actions{
+  margin-top:10px;
+  text-align:center;
+}
+.actions a{
+  display:inline-block;
+  background: var(--accent);
+  color: white;
+  padding:8px 16px;
+  border-radius:10px;
+  text-decoration:none;
+  font-weight:600;
+  transition: background 0.3s;
+}
+.actions a:hover{
+  background: #5a4cd4;
+}
+
+</style>
+</head>
+<body>
+
+<header>
+  <h1>My Gallery</h1>
+  <p>Creative, Responsive, and Animated Gallery</p>
+</header>
+
+<div class="gallery">
+  <!-- 15 Images -->
+  <div class="photo" onclick="openBox('https://picsum.photos/id/1015/600/400')">
+    <img src="https://picsum.photos/id/1015/600/400" alt="Nature 1">
+    <span>Nature 1</span>
+  </div>
+  <div class="photo" onclick="openBox('https://picsum.photos/id/1020/600/800')">
+    <img src="https://picsum.photos/id/1020/600/800" alt="Nature 2">
+    <span>Nature 2</span>
+  </div>
+  <div class="photo" onclick="openBox('https://picsum.photos/id/1024/600/600')">
+    <img src="https://picsum.photos/id/1024/600/600" alt="Nature 3">
+    <span>Nature 3</span>
+  </div>
+  <div class="photo" onclick="openBox('https://picsum.photos/id/1035/600/700')">
+    <img src="https://picsum.photos/id/1035/600/700" alt="Nature 4">
+    <span>Nature 4</span>
+  </div>
+  <div class="photo" onclick="openBox('https://picsum.photos/id/1040/600/500')">
+    <img src="https://picsum.photos/id/1040/600/500" alt="Nature 5">
+    <span>Nature 5</span>
+  </div>
+  <div class="photo" onclick="openBox('https://picsum.photos/id/1044/600/700')">
+    <img src="https://picsum.photos/id/1044/600/700" alt="Nature 6">
+    <span>Nature 6</span>
+  </div>
+  <div class="photo" onclick="openBox('https://picsum.photos/id/1050/600/600')">
+    <img src="https://picsum.photos/id/1050/600/600" alt="Nature 7">
+    <span>Nature 7</span>
+  </div>
+  <div class="photo" onclick="openBox('https://picsum.photos/id/1057/600/500')">
+    <img src="https://picsum.photos/id/1057/600/500" alt="Nature 8">
+    <span>Nature 8</span>
+  </div>
+  <div class="photo" onclick="openBox('https://picsum.photos/id/1062/600/700')">
+    <img src="https://picsum.photos/id/1062/600/700" alt="Nature 9">
+    <span>Nature 9</span>
+  </div>
+  <div class="photo" onclick="openBox('https://picsum.photos/id/1070/600/600')">
+    <img src="https://picsum.photos/id/1070/600/600" alt="Nature 10">
+    <span>Nature 10</span>
+  </div>
+  <div class="photo" onclick="openBox('https://picsum.photos/id/1080/600/700')">
+    <img src="https://picsum.photos/id/1080/600/700" alt="Nature 11">
+    <span>Nature 11</span>
+  </div>
+  <div class="photo" onclick="openBox('https://picsum.photos/id/1084/600/600')">
+    <img src="https://picsum.photos/id/1084/600/600" alt="Nature 12">
+    <span>Nature 12</span>
+  </div>
+  <div class="photo" onclick="openBox('https://picsum.photos/id/1087/600/500')">
+    <img src="https://picsum.photos/id/1087/600/500" alt="Nature 13">
+    <span>Nature 13</span>
+  </div>
+  <div class="photo" onclick="openBox('https://picsum.photos/id/1090/600/600')">
+    <img src="https://picsum.photos/id/1090/600/600" alt="Nature 14">
+    <span>Nature 14</span>
+  </div>
+  <div class="photo" onclick="openBox('https://picsum.photos/id/1095/600/700')">
+    <img src="https://picsum.photos/id/1095/600/700" alt="Nature 15">
+    <span>Nature 15</span>
+  </div>
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <div class="close" onclick="closeBox()">✕</div>
+  <div class="lightbox-content" id="lightboxContent">
+    <!-- Image will appear here -->
+    <div class="actions">
+      <a href="#" id="downloadBtn" target="_blank">⬇ Backup Image</a>
+    </div>
+  </div>
+</div>
+
+<script>
+function openBox(imgUrl){
+  const content = document.getElementById('lightboxContent');
+  content.innerHTML = `
+    <img src="${imgUrl}" alt="Full Image">
+    <div class="actions">
+      <a href="${imgUrl}" download>⬇ Backup Image</a>
+    </div>
+  `;
+  document.getElementById('lightbox').classList.add('active');
+}
+function closeBox(){
+  document.getElementById('lightbox').classList.remove('active');
+}
+</script>
+
+</body>
+</html>
